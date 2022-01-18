@@ -1,0 +1,49 @@
+Gatilho: Apenas o prefixo do bot.
+
+$nomention
+$reply
+$var[c;$toLowercase[$message[1]]]
+$onlyIf[$or[$var[c]==calc;$var[c]==calculadora;$var[c]==calculator;$var[c]==calculate]==true;] 
+
+$var[msg;$replaceText[$replaceText[$replaceText[$replaceText[@$message@;$message[1];;-1];@@;0;-1]; ;;-1];@;;-1]]
+
+$suppressErrors[**❌ » Algo deu errado, verifique a equação.**]
+
+$title[Calculadora]
+$color[#303136]
+$description[```a
+$var[msg]```
+```b
+$calculate[$var[msg]]```]
+$footer[$username ($authorID)]
+$thumbnail[$authorAvatar]
+$addTimestamp
+
+$setVar[calc;$replaceText[$replaceText[@$var[msg]@;@0@;;-1];@;;-1];$authorID]
+$setVar[result;$calculate[$var[msg]];$authorID]
+
+$addButton[no;7;7;secondary;no;]
+$addButton[no;8;8;secondary;no;]
+$addButton[no;9;9;secondary;no;]
+$addButton[no;/;/;primary;no;]
+$addButton[no;C;C;danger;no;]
+
+$addButton[yes;4;4;secondary;no;]
+$addButton[no;5;5;secondary;no;]
+$addButton[no;6;6;secondary;no;]
+$addButton[no;*;*;primary;no;]
+$addButton[no;del;D;danger;no;]
+
+$addButton[yes;1;1;secondary;no;]
+$addButton[no;2;2;secondary;no;]
+$addButton[no;3;3;secondary;no;]
+$addButton[no;-;-;primary;no;]
+$addButton[no;(;(;primary;no;]
+
+$addButton[yes;.;.;primary;no;]
+$addButton[no;0;0;secondary;no;]
+$addButton[no;=;=;success;no;]
+$addButton[no;+;+;primary;no;]
+$addButton[no;););primary;yes;]
+
+$cooldown[10s;**🕰️ » Aguarde mais `%time%` para executar este comando novamente.**]
