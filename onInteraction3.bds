@@ -1,0 +1,19 @@
+Gatilho: $onInteraction[=]
+
+$nomention
+$reply
+$onlyIfMessageContains[$getEmbedData[$channelID;$messageID;1;footer];$authorID;]
+
+$suppressErrors
+
+$title[Calculadora]
+$color[#303136]
+$description[```a
+$getVar[calc;$authorID]```
+```b
+$calculate[$getVar[calc;$authorID]]```]
+$footer[$username ($authorID)]
+$thumbnail[$authorAvatar]
+$addTimestamp
+
+$setVar[result;$calculate[$getVar[calc;$authorID]];$authorID]

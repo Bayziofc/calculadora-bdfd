@@ -1,0 +1,26 @@
+Gatilho: $onInteraction[del]
+
+$nomention
+$reply
+$onlyIfMessageContains[$getEmbedData[$channelID;$messageID;1;footer];$authorID;]
+
+$suppressErrors
+
+$textSplit[$getVar[calc;$authorID];]
+$var[c;$splitText[$charCount[$getVar[calc;$authorID]]]]
+$var[e;$replaceText[$getVar[calc;$authorID]@;$var[c]@;;-1]]
+
+$title[Calculadora]
+$color[#303136]
+$description[```a
+$replaceText[$replaceText[@$var[e]@;@@;0;-1];@;;-1]```
+```b
+$getVar[result;$authorID]```]
+$footer[$username ($authorID)]
+$thumbnail[$authorAvatar]
+
+$setVar[calc;$var[e];$authorID]
+$if[$var[c]==(]
+$editButton[(;(;primary;no;]
+$editButton[););primary;yes;]
+$endif
